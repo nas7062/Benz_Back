@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.shop.car.dao.UserDao">
+  <insert id="insertUser" parameterType="User" >
+  INSERT INTO user (email, password, username) 
+  VALUES (#{email}, #{password}, #{username});
+</insert>
+ <select id="login" resultType="User" parameterType="User" >
+  select * from user where email=#{email} and password=#{password}
+  </select>
+ 
+  <update id="updateUser" parameterType="User">
+  update user set username=#{username} where email=#{email} and password=#{password}
+  </update>
+  <delete id="deleteMember" parameterType="String">
+  delete from user where email=#{email}
+  </delete>
+</mapper>
