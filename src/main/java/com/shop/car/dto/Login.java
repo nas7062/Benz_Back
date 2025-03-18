@@ -1,13 +1,15 @@
 package com.shop.car.dto;
 
 import java.sql.Timestamp;
+import java.util.Date;
 
 
 public class Login {
 	
 	private String  token,username;
 	private int user_id;
-	private Timestamp login_time;
+	private Date login_time;
+	
 	public String getUsername() {
 		return username;
 	}
@@ -27,17 +29,17 @@ public class Login {
 	public void setToken(String token) {
 		this.token = token;
 	}
-	public Timestamp getLogin_time() {
+	public Date getLogin_time() {
 		return login_time;
 	}
-	public void setLogin_time(Timestamp login_time) {
+	public void setLogin_time(Date login_time) {
 		this.login_time = login_time;
 	}
 	public Login() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Login(int user_id, String token, Timestamp login_time,String username) {
+	public Login(int user_id, String token, Date login_time,String username) {
 		super();
 		this.user_id = user_id;
 		this.token = token;

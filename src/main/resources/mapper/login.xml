@@ -13,9 +13,17 @@
   <delete id="deleteToken" parameterType="String">
   	delete from login where token=#{token}
   </delete>
-   <select id="emailCheck" resultType="User" parameterType="String" >
+  
+  <select id="emailCheck" resultType="User" parameterType="String" >
   select * from user where email=#{email} 
   </select>
   
+  <select id="checkToken" parameterType="String" resultType ="Login">
+     select * FROM login WHERE token = #{token}
+  </select>
+  
+  <update id="updateLoginTime" parameterType="map">
+    UPDATE login SET login_time = #{now} WHERE user_id = #{user_id}
+  </update>
   
 </mapper>

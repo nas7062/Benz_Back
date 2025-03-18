@@ -5,6 +5,7 @@ import java.util.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -24,6 +25,7 @@ public class ModelController {
 	public List<Model> getAllModels() {
 		try {
 			Object o=storage.get("firstPageProducts");
+			
 			if(o==null) {
 				List<Model> list=ModelService.getAllModels();
 				storage.put("firstPageProducts", list);

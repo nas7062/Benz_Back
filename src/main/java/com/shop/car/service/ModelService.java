@@ -17,5 +17,5 @@ public class ModelService {
 	public List<Model> getAllModels() throws Exception {
 		return modelDao.getAllModels();
 	}
-
+	
 }

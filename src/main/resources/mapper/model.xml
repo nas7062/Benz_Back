@@ -4,7 +4,8 @@
 <mapper namespace="com.shop.car.dao.ModelDao">
 
     <select id="getAllModels" resultType="Model">
-        SELECT * FROM model;
+        SELECT * FROM brand;
     </select>
-
+	
+	
 </mapper>

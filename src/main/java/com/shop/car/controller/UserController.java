@@ -93,7 +93,7 @@ public class UserController {
 	
 	@PostMapping("updateUser")
 	public String updateUser(@RequestBody User user) {
-		System.out.println(user);
+		System.out.println(user);	
 		try {
 			userService.updateUser(user);
 			return "ok";
@@ -118,7 +118,7 @@ public class UserController {
 	}
 	
 	@PostMapping("emailCheck")
-	public boolean emailCheck(@RequestParam String email) {
+	public boolean emailCheck( @RequestParam String email) {
 		 boolean exists = false;
 		try {
 			exists = userService.emailCheck(email);

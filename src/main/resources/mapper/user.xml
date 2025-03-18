@@ -18,4 +18,5 @@
   <delete id="deleteMember" parameterType="String">
   delete from user where email=#{email}
   </delete>
+  
 </mapper>

@@ -5,11 +5,17 @@ import java.util.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.shop.car.dto.Login;
+import com.shop.car.dto.Model;
 import com.shop.car.dto.Product;
 import com.shop.car.service.ProductService;
+import com.shop.car.service.UserService;
+import com.shop.car.util.JwtTokenProvider;
 
 @RestController
 @CrossOrigin("http://localhost:3000/")
@@ -17,6 +23,10 @@ public class ProductController {
 	
 	@Autowired
 	ProductService productService;
+	
+	@Autowired
+	UserService userService;
+
 	
 	Map<String,Object> storage=new HashMap();
 	
@@ -39,6 +49,29 @@ public class ProductController {
 		}
 	}
 	
-
+	@GetMapping("getProduct/{id}")
+	public Product getProductById(@PathVariable String id, @RequestHeader("Authorization") String token) throws Exception {
+	    try {
+	        Login loginInfo= userService.checkToken(token);
+	        System.out.println("loginInfo "+loginInfo);
+	        System.out.println("getLoginTime "+ loginInfo.getLogin_time());
+	        if(loginInfo != null && loginInfo.getLogin_time()!=null) {
+	        	long now = System.currentTimeMillis();
+	        	System.out.println(now);
+	        	long lastTime = loginInfo.getLogin_time().getTime();
+	        	System.out.println(lastTime);
+	        	long interval = now - lastTime;
+	        	System.out.println("interval: " + interval);
+	        	if(interval <=1800000) {
+	        		  return productService.getProductById(id); // 상품 정보 조회 후 반환
+	        	}
+	        }
+	      } catch (Exception e) {
+	        e.printStackTrace();
+	        return null;
+	    }
+	    return null;
+	}
+	
 
 }

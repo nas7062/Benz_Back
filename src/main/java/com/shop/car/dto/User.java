@@ -1,12 +1,13 @@
 package com.shop.car.dto;
 
 import java.sql.Timestamp;
+import java.util.Date;
 
 public class User {
 	
 	private int id;
 	private String email,password,username;
-	private Timestamp regist_date;
+	private Date regist_date;
 	public int getId() {
 		return id;
 	}
@@ -32,10 +33,10 @@ public class User {
 	public void setUsername(String username) {
 		this.username = username;
 	}
-	public Timestamp getRegist_date() {
+	public Date getRegist_date() {
 		return regist_date;
 	}
-	public void setRegist_date(Timestamp regist_date) {
+	public void setRegist_date(Date regist_date) {
 		this.regist_date = regist_date;
 	}
 	public User() {
@@ -43,7 +44,7 @@ public class User {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public User(int id, String email, String password, String username, Timestamp regist_date) {
+	public User(int id, String email, String password, String username, Date regist_date) {
 		super();
 		this.id = id;
 		this.email = email;
