@@ -49,29 +49,20 @@ public class ProductController {
 		}
 	}
 	
-	@GetMapping("getProduct/{id}")
-	public Product getProductById(@PathVariable String id, @RequestHeader("Authorization") String token) throws Exception {
-	    try {
-	        Login loginInfo= userService.checkToken(token);
-	        System.out.println("loginInfo "+loginInfo);
-	        System.out.println("getLoginTime "+ loginInfo.getLogin_time());
-	        if(loginInfo != null && loginInfo.getLogin_time()!=null) {
-	        	long now = System.currentTimeMillis();
-	        	System.out.println(now);
-	        	long lastTime = loginInfo.getLogin_time().getTime();
-	        	System.out.println(lastTime);
-	        	long interval = now - lastTime;
-	        	System.out.println("interval: " + interval);
-	        	if(interval <=1800000) {
-	        		  return productService.getProductById(id); // 상품 정보 조회 후 반환
-	        	}
-	        }
-	      } catch (Exception e) {
-	        e.printStackTrace();
-	        return null;
-	    }
-	    return null;
-	}
+	/*
+	 * @GetMapping("getProduct/{id}") public Product getProductById(@PathVariable
+	 * String id, @RequestHeader("Authorization") String token) throws Exception {
+	 * try { Login loginInfo= userService.checkToken(token);
+	 * System.out.println("loginInfo "+loginInfo);
+	 * System.out.println("getLoginTime "+ loginInfo.getLogin_time()); if(loginInfo
+	 * != null && loginInfo.getLogin_time()!=null) { long now =
+	 * System.currentTimeMillis(); System.out.println(now); long lastTime =
+	 * loginInfo.getLogin_time().getTime(); System.out.println(lastTime); long
+	 * interval = now - lastTime; System.out.println("interval: " + interval);
+	 * if(interval <=1800000) { return productService.getProductById(id); // 상품 정보
+	 * 조회 후 반환 } } } catch (Exception e) { e.printStackTrace(); return null; }
+	 * return null; }
+	 */
 	
 
 }
