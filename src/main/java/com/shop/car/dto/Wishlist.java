@@ -4,7 +4,7 @@ import java.sql.Timestamp;
 
 public class Wishlist {
     private int id;
-    private Integer user_id; // ✅ 비회원일 경우 NULL을 허용하도록 Integer로 변경
+    private String user_email; // ✅ user_id 대신 user_email 사용
     private int car_id;
     private String brand;   // 🚀 Car 테이블 반영
     private String model;
@@ -24,12 +24,12 @@ public class Wishlist {
         this.id = id;
     }
 
-    public Integer getUser_id() {
-        return user_id;
+    public String getUser_email() {
+        return user_email;
     }
 
-    public void setUser_id(Integer user_id) {
-        this.user_id = user_id;
+    public void setUser_email(String user_email) {
+        this.user_email = user_email;
     }
 
     public int getCar_id() {

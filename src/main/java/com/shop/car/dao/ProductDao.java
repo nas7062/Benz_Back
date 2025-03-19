@@ -10,5 +10,5 @@ import com.shop.car.dto.Product;
 public interface ProductDao {
     List<Product> getAllProducts() throws Exception;
     
-    // Product getProductById(String id) throws Exception;
+     Product getProductById(String id) throws Exception;
 }
