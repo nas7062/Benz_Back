@@ -20,49 +20,56 @@ import com.shop.car.util.JwtTokenProvider;
 @RestController
 @CrossOrigin("http://localhost:3000/")
 public class ProductController {
-	
+
 	@Autowired
 	ProductService productService;
-	
+
 	@Autowired
 	UserService userService;
 
-	
-	Map<String,Object> storage=new HashMap();
-	
+	Map<String, Object> storage = new HashMap();
+
 	@GetMapping("getAllProducts")
 	public List<Product> getAllProducts() {
 		try {
-			Object o=storage.get("firstPageProducts");
-			if(o==null) {
-				List<Product> list=productService.getAllProducts();
+			Object o = storage.get("firstPageProducts");
+			if (o == null) {
+				List<Product> list = productService.getAllProducts();
 				storage.put("firstPageProducts", list);
 				return list;
 			}
-			
-			return (List<Product>)o;
-			 
+
+			return (List<Product>) o;
+
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return null;
 		}
 	}
-	
-	/*
-	 * @GetMapping("getProduct/{id}") public Product getProductById(@PathVariable
-	 * String id, @RequestHeader("Authorization") String token) throws Exception {
-	 * try { Login loginInfo= userService.checkToken(token);
-	 * System.out.println("loginInfo "+loginInfo);
-	 * System.out.println("getLoginTime "+ loginInfo.getLogin_time()); if(loginInfo
-	 * != null && loginInfo.getLogin_time()!=null) { long now =
-	 * System.currentTimeMillis(); System.out.println(now); long lastTime =
-	 * loginInfo.getLogin_time().getTime(); System.out.println(lastTime); long
-	 * interval = now - lastTime; System.out.println("interval: " + interval);
-	 * if(interval <=1800000) { return productService.getProductById(id); // 상품 정보
-	 * 조회 후 반환 } } } catch (Exception e) { e.printStackTrace(); return null; }
-	 * return null; }
-	 */
-	
+
+	@GetMapping("getProduct/{id}")
+	public Product getProductById(@PathVariable String id, @RequestHeader("Authorization") String token) throws Exception {
+	    try {
+	        Login loginInfo= userService.checkToken(token);
+	        System.out.println("loginInfo "+loginInfo);
+	        System.out.println("getLoginTime "+ loginInfo.getLogin_time());
+	        if(loginInfo != null && loginInfo.getLogin_time()!=null) {
+	        	long now = System.currentTimeMillis();
+	        	System.out.println(now);
+	        	long lastTime = loginInfo.getLogin_time().getTime();
+	        	System.out.println(lastTime);
+	        	long interval = now - lastTime;
+	        	System.out.println("interval: " + interval);
+	        	if(interval <=1800000) {
+	        		  return productService.getProductById(id); // 상품 정보 조회 후 반환
+	        	}
+	        }
+	      } catch (Exception e) {
+	        e.printStackTrace();
+	        return null;
+	    }
+	    return null;
+	}
 
 }

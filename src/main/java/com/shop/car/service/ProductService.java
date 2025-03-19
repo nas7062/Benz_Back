@@ -18,9 +18,9 @@ public class ProductService {
 	public List<Product> getAllProducts() throws Exception {
 		return productDao.getAllProducts();
 	}
-	/*
-	 * public Product getProductById(String id) throws Exception { return
-	 * productDao.getProductById(id); }
-	 */
+	
+	 public Product getProductById(String id) throws Exception { return
+	 productDao.getProductById(id); }
+	 
 	
 }

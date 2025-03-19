@@ -5,32 +5,33 @@
 
 <mapper namespace="com.shop.car.dao.WishlistDao">
 
-    <!-- ✅ 위시리스트 추가 -->
+    <!-- ✅ 위시리스트 추가 (user_email 사용) -->
     <insert id="addToWishlist" parameterType="com.shop.car.dto.Wishlist">
-        INSERT INTO wishlist (user_id, car_id, create_date, update_date)
-        VALUES (#{user_id}, #{car_id}, NOW(), NOW());
+        INSERT INTO wishlist (user_email, car_id, create_date, update_date)
+        VALUES (#{user_email}, #{car_id}, NOW(), NOW());
     </insert>
 
     <!-- ✅ 특정 유저의 위시리스트 조회 (Car 정보 포함) -->
-    <select id="getWishlistByUser" parameterType="int" resultType="com.shop.car.dto.Wishlist">
-        SELECT w.id, w.user_id, w.car_id, c.brand, c.model, c.price, c.horsepower, c.max_speed, c.image_url, 
+    <select id="getWishlistByUser" parameterType="string" resultType="com.shop.car.dto.Wishlist">
+        SELECT w.id, w.user_email, w.car_id, c.brand, c.model, c.price, c.horsepower, c.max_speed, c.image_url, 
                w.create_date, w.update_date
         FROM wishlist w
         JOIN car c ON w.car_id = c.id
-        WHERE w.user_id = #{user_id};
+        WHERE w.user_email = #{user_email};
     </select>
 
     <!-- ✅ 전체 위시리스트 조회 (모든 유저 포함) -->
     <select id="getAllWishlist" resultType="com.shop.car.dto.Wishlist">
-        SELECT w.id, w.user_id, w.car_id, c.brand, c.model, c.price, c.horsepower, c.max_speed, c.image_url, 
+        SELECT w.id, w.user_email, w.car_id, c.brand, c.model, c.price, c.horsepower, c.max_speed, c.image_url, 
                w.create_date, w.update_date
         FROM wishlist w
         JOIN car c ON w.car_id = c.id;
     </select>
 
-    <!-- ✅ 위시리스트에서 삭제 -->
-    <delete id="removeFromWishlist" parameterType="int">
-        DELETE FROM wishlist WHERE car_id = #{car_id};
+    <!-- ✅ 특정 사용자의 위시리스트에서 차량 삭제 -->
+    <delete id="removeFromWishlist" parameterType="map">
+        DELETE FROM wishlist 
+        WHERE car_id = #{car_id} AND user_email = #{user_email};
     </delete>
 
 </mapper>
