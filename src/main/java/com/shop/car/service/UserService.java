@@ -35,8 +35,6 @@ public class UserService {
 		long now = System.currentTimeMillis();
 		long tokenTime = login.getLogin_time().getTime() + (30 * 60 * 1000);
 
-		System.out.println("tokentime " + tokenTime);
-		
 		if (now > tokenTime) {
 			loginDao.deleteToken(authorization);
 			return null;
@@ -123,4 +121,22 @@ public class UserService {
 		String passwordPattern = "^(?=.*[0-9]).{8,}$";
 		return Pattern.matches(passwordPattern, password);
 	}
+	public boolean isLoginValid(String token) throws Exception {
+	    Login loginInfo = checkToken(token); // 토큰 검증
+	    if (loginInfo != null && loginInfo.getLogin_time() != null) {
+	        long now = System.currentTimeMillis();
+	        long lastTime = loginInfo.getLogin_time().getTime();
+	        long interval = now - lastTime;
+	        // 30분 이상 경과했으면 로그인 만료로 처리
+	        if (interval > 1800000) {
+	            // 만료된 경우
+	            return false;
+	        } else {// 로그인 시간이 유효하면 갱신
+	            updateLoginTime(token); // 로그인 시간 갱신
+	            return true;
+	        }
+	    }
+	    return false; // 로그인 정보가 없거나 로그인 시간이 null이면 false
+	}
+
 }
