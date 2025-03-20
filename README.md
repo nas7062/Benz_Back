@@ -46,3 +46,102 @@
 ### BackEnd : <img src="https://img.shields.io/badge/SpringBoot-6DB33F?style=for-the-badge&logo=SpringBoot&logoColor=white"> 
 ### DataBase : <img src="https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=MySQL&logoColor=white">
 ### Cooperation :  <img src="https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=Git&logoColor=white">  <img src="https://img.shields.io/badge/Slack-4A154B?style=for-the-badge&logo=Slack&logoColor=white">  <img src="https://img.shields.io/badge/Notion-000000?style=for-the-badge&logo=Notion&logoColor=white">
+
+## 5. 폴더 구조
+```
+📦src
+ ┣ 📂assets
+ ┃ ┗ 📜car-icon.png
+ ┣ 📂component
+ ┃ ┣ 📂Footer
+ ┃ ┃ ┣ 📜Foot.css
+ ┃ ┃ ┗ 📜Foot.jsx
+ ┃ ┣ 📂Models
+ ┃ ┃ ┣ 📜HoverRotateImg.jsx
+ ┃ ┃ ┣ 📜ModelCard.jsx
+ ┃ ┃ ┣ 📜ModelCardItem.css
+ ┃ ┃ ┗ 📜ModelCardItem.jsx
+ ┃ ┣ 📂Navigation
+ ┃ ┃ ┣ 📜Navigation.jsx
+ ┃ ┃ ┗ 📜Navigation.module.css
+ ┃ ┣ 📂Productlists
+ ┃ ┃ ┣ 📜ProductFilter.jsx
+ ┃ ┃ ┣ 📜ProductFilter.module.css
+ ┃ ┃ ┣ 📜Productlist.jsx
+ ┃ ┃ ┗ 📜Productlist.module.css
+ ┃ ┗ 📂Wishlist
+ ┃ ┃ ┣ 📜Wishlist.jsx
+ ┃ ┃ ┗ 📜Wishlist.module.css
+ ┣ 📂pages
+ ┃ ┣ 📂Detail
+ ┃ ┃ ┣ 📜ProductDetail.jsx
+ ┃ ┃ ┗ 📜ProductDetail.module.css
+ ┃ ┣ 📂Login
+ ┃ ┃ ┣ 📜Login.jsx
+ ┃ ┃ ┗ 📜Login.module.css
+ ┃ ┣ 📂Main
+ ┃ ┃ ┣ 📜Main.jsx
+ ┃ ┃ ┗ 📜Main.module.css
+ ┃ ┣ 📂Products
+ ┃ ┃ ┣ 📜Product.jsx
+ ┃ ┃ ┗ 📜Product.module.css
+ ┃ ┣ 📂Signup
+ ┃ ┃ ┣ 📜Signup.jsx
+ ┃ ┃ ┗ 📜SignUp.module.css
+ ┃ ┗ 📂Wish
+ ┃ ┃ ┣ 📜Wish.jsx
+ ┃ ┃ ┗ 📜Wish.module.css
+ ┣ 📜App.css
+ ┣ 📜App.js
+ ┣ 📜App.test.js
+ ┣ 📜index.css
+ ┣ 📜index.js
+ ┣ 📜logo.svg
+ ┣ 📜reportWebVitals.js
+ ┣ 📜Routing.js
+ ┗ 📜setupTests.js
+```
+
+```
+📦main
+ ┣ 📂java
+ ┃ ┗ 📂com
+ ┃ ┃ ┗ 📂shop
+ ┃ ┃ ┃ ┗ 📂car
+ ┃ ┃ ┃ ┃ ┣ 📂controller
+ ┃ ┃ ┃ ┃ ┃ ┣ 📜ModelController.java
+ ┃ ┃ ┃ ┃ ┃ ┣ 📜ProductController.java
+ ┃ ┃ ┃ ┃ ┃ ┣ 📜UserController.java
+ ┃ ┃ ┃ ┃ ┃ ┗ 📜WishlistController.java
+ ┃ ┃ ┃ ┃ ┣ 📂dao
+ ┃ ┃ ┃ ┃ ┃ ┣ 📜LoginDao.java
+ ┃ ┃ ┃ ┃ ┃ ┣ 📜ModelDao.java
+ ┃ ┃ ┃ ┃ ┃ ┣ 📜ProductDao.java
+ ┃ ┃ ┃ ┃ ┃ ┣ 📜UserDao.java
+ ┃ ┃ ┃ ┃ ┃ ┗ 📜WishlistDao.java
+ ┃ ┃ ┃ ┃ ┣ 📂dto
+ ┃ ┃ ┃ ┃ ┃ ┣ 📜Login.java
+ ┃ ┃ ┃ ┃ ┃ ┣ 📜Model.java
+ ┃ ┃ ┃ ┃ ┃ ┣ 📜Product.java
+ ┃ ┃ ┃ ┃ ┃ ┣ 📜User.java
+ ┃ ┃ ┃ ┃ ┃ ┗ 📜Wishlist.java
+ ┃ ┃ ┃ ┃ ┣ 📂service
+ ┃ ┃ ┃ ┃ ┃ ┣ 📜ModelService.java
+ ┃ ┃ ┃ ┃ ┃ ┣ 📜ProductService.java
+ ┃ ┃ ┃ ┃ ┃ ┣ 📜UserService.java
+ ┃ ┃ ┃ ┃ ┃ ┗ 📜WishlistService.java
+ ┃ ┃ ┃ ┃ ┣ 📂util
+ ┃ ┃ ┃ ┃ ┃ ┣ 📜JwtTokenProvider.java
+ ┃ ┃ ┃ ┃ ┃ ┗ 📜OpenCrypt.java
+ ┃ ┃ ┃ ┃ ┗ 📜BenzApplication.java
+ ┗ 📂resources
+ ┃ ┣ 📂config
+ ┃ ┃ ┗ 📜secu.properties
+ ┃ ┣ 📂mapper
+ ┃ ┃ ┣ 📜login.xml
+ ┃ ┃ ┣ 📜model.xml
+ ┃ ┃ ┣ 📜product.xml
+ ┃ ┃ ┣ 📜user.xml
+ ┃ ┃ ┗ 📜wishlist.xml
+ ┃ ┗ 📜application.properties
+```
