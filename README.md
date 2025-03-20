@@ -48,6 +48,7 @@
 ### Cooperation :  <img src="https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=Git&logoColor=white">  <img src="https://img.shields.io/badge/Slack-4A154B?style=for-the-badge&logo=Slack&logoColor=white">  <img src="https://img.shields.io/badge/Notion-000000?style=for-the-badge&logo=Notion&logoColor=white">
 
 ## 5. 폴더 구조
+### FrontENd
 ```
 📦src
  ┣ 📂assets
@@ -101,7 +102,7 @@
  ┣ 📜Routing.js
  ┗ 📜setupTests.js
 ```
-
+###  BackEnd
 ```
 📦main
  ┣ 📂java
@@ -145,3 +146,31 @@
  ┃ ┃ ┗ 📜wishlist.xml
  ┃ ┗ 📜application.properties
 ```
+
+## Development Workflow (개발 워크플로우)
+### 브랜치 전략
+```
+- main: 제품 출시 브랜치
+- develop: 출시를 위해 개발하는 브랜치
+- feat/{기능명}: 새로운 기능 개발하는 브랜치
+- refactor/{기능명}: 개발된 기능을 리팩터링하는 브랜치
+- fix:  발생한 버그를 수정하는 브랜치
+- test: 테스트할 브랜치
+```
+#### main 브랜치는 배포 가능한 최신 상태를 유지하고 기능 개발이나 버그 수정은 별도의 브랜치에서 작업한 후, 
+#### 리뷰를 거쳐 main 브랜치에 Merge 하는 방식으로 진행 하였습니다.
+
+## 테이블 구조
+![________________720](https://github.com/user-attachments/assets/ccfe3b33-f93f-4be3-8718-85def1f2d2d8)
+
+## 개선 목표
++  로그인 시도 제한 및 계정 잠금
+   + 사용자가 동일한 이메일로 5번 이상 로그인 시도를 하여 비밀번호를 틀리면, 해당 계정은 잠금 처리 되도록 이를 통해 Brute Force 공격을 방지하며 보안을 강화합니다.
++ 사용자 중심의 UI 및 페이지 개발
+  + 일부 페이지는 아직 구현되지 않았습니다. 이러한 페이지들은 추후 사용자 피드백을 반영하여 개선할 계획입니다. 
++ 서버 및 클라이언트에서 발생할 수 있는 불필요한 리소스 줄이도록 생각하고 적용해보기
+
+## 프로젝트 소감
+### 🏠 김민석
++ 이번 프로젝트에서 협업하는 과정은 처음에는 어려운 점도 있었지만 코드를 작성하고 문제를 해결하는 과정에서 많은 것을 배웠습니다. 서로의 코드를 보며 에러를 잡아주고 각자의 작업을 협력하여 완성도를 높여가는 과정이 정말 의미 깊었고 특히 GitHub을 사용한 협업은 조금 헷갈리기도 했지만 점차 익숙해지면서 버전 관리와 협업의 중요성을 실감하게 되었습니다.
+팀원과 함께 작업하면서 커뮤니케이션의 중요성도 다시 한 번 느꼈고 각자의 역할을 분담하며 최선의 결과를 내기 위해 노력한 경험이 정말 유익하고 좋은 시간이었습니다!!
