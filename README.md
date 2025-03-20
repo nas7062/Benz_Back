@@ -18,6 +18,8 @@
   </tbody>
 </table>
 
+#### BackEnd : https://github.com/nas7062/Benz_Back
+#### FrontEnd : https://github.com/gusdn6288/project
 ## 3. Key Features(주요 기능)
 + 회원가입
   +  FrontEnd와 BackEnd에서 모두 유효성 검사 (백엔드로 넘어오는 도중 변질 혹은 조작될 가능성 배제시키기 위함.)
