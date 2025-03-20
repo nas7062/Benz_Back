@@ -18,15 +18,16 @@ public class JwtTokenProvider {
 	public static String createToken(String data) {
 		Claims claims = Jwts.claims(); // 빈 claims 객체 생성
 		claims.put("nickname", data); // nickname 필드에 data 저장
-
 		Date now = new Date();
 		System.out.println(now);
+		long expirationTime = 60  * 30 * 1000; // 30분 
+	    Date expiryDate = new Date(now.getTime() + expirationTime); // 만료 시간 설정
 
 		return Jwts.builder().
 				setHeaderParam(Header.TYPE, Header.JWT_TYPE) // 헤더 설정 (타입을 JWT로 설정)
 				.setClaims(claims) // 데이터 설정
 				.setIssuedAt(now) // 발급시간
-				.setExpiration(new Date(now.getTime() + (1000L * 60 * 30))) // 만료시간 설정
+				.setExpiration(expiryDate) // 만료시간 설정
 				.signWith(SignatureAlgorithm.HS256, salt) // 서명
 				.compact(); // 최종 JWT 문자열 생성
 		

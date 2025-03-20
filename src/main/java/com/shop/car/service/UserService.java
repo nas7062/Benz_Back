@@ -127,9 +127,10 @@ public class UserService {
 	        long now = System.currentTimeMillis();
 	        long lastTime = loginInfo.getLogin_time().getTime();
 	        long interval = now - lastTime;
+	        System.out.println("interval " + interval);
 	        // 30분 이상 경과했으면 로그인 만료로 처리
-	        if (interval > 1800000) {
-	            // 만료된 경우
+	        if (interval > 60 * 30 * 1000) { // 30분
+	        	loginDao.deleteToken(token);
 	            return false;
 	        } else {// 로그인 시간이 유효하면 갱신
 	            updateLoginTime(token); // 로그인 시간 갱신
@@ -138,5 +139,7 @@ public class UserService {
 	    }
 	    return false; // 로그인 정보가 없거나 로그인 시간이 null이면 false
 	}
+	
+	
 
 }

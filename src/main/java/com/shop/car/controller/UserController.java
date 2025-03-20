@@ -4,8 +4,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -23,16 +25,36 @@ public class UserController {
 	UserService userService;
 	
 	@PostMapping("logout")
-	public void logout(@RequestHeader String authorization) {
-		System.out.println(authorization);
-		try {
-			userService.logout(authorization);
+	public ResponseEntity<?> logout(@RequestHeader String authorization) {
+	    System.out.println(authorization);
+	    try {
+	        // 토큰 유효성 검사
+	        if (!userService.isLoginValid(authorization)) {
+	        	System.out.println("토큰만료");
+	            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("토큰이 만료되었습니다.");
+	        }
+
+	        userService.logout(authorization); // 로그아웃 처리
+	        return ResponseEntity.ok("로그아웃 성공");
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("서버 오류 발생");
+	    }
+	}
+	
+	@GetMapping("check-session")
+	public ResponseEntity<?> checkSession(@RequestHeader String authorization) {
+	    try {
+			if (!userService.isLoginValid(authorization)) {
+				System.out.println("토큰만료");
+			    return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("토큰이 만료되었습니다.");
+			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	    return ResponseEntity.ok().body("세션 유지 중");
 	}
-	
 	@PostMapping("tokenLogin")
 	public Map<String,String> tokenLogin(@RequestBody User user) {
 		System.out.println(user);
