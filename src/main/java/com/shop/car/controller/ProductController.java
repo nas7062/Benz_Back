@@ -23,9 +23,7 @@ public class ProductController {
 
 	@Autowired
 	ProductService productService;
-
-	@Autowired
-	UserService userService;
+	
 
 	Map<String, Object> storage = new HashMap();
 
@@ -38,7 +36,6 @@ public class ProductController {
 				storage.put("firstPageProducts", list);
 				return list;
 			}
-
 			return (List<Product>) o;
 
 		} catch (Exception e) {
@@ -49,7 +46,7 @@ public class ProductController {
 	}
 
 	@GetMapping("getProduct/{id}")
-	public Product getProductById(@PathVariable String id, @RequestHeader("Authorization") String token)
+	public Product getProductById(@PathVariable String id)
 			throws Exception {
 		try {
 			return productService.getProductById(id); // 상품 정보 조회 후 반환

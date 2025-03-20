@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import java.util.List;
 import com.shop.car.dto.Wishlist;
+import com.shop.car.service.UserService;
 import com.shop.car.service.WishlistService;
 
 @RestController
@@ -18,16 +19,19 @@ public class WishlistController {
 
     @Autowired
     private WishlistService wishlistService;
-
+    
+    @Autowired
+    UserService userService;
     // ✅ 위시리스트 추가 (user_email 기반)
     @PostMapping("/add")
-    public ResponseEntity<String> addToWishlist(@RequestBody Wishlist wishlist) {
+    public ResponseEntity<String> addToWishlist(@RequestBody Wishlist wishlist,@RequestHeader("Authorization") String token) {
         try {
             if (wishlist.getUser_email() == null || wishlist.getUser_email().trim().isEmpty()) {
+            	
                 logger.error("⚠️ user_email 값이 존재하지 않습니다!");
                 return ResponseEntity.badRequest().body("⚠️ user_email 값이 없습니다.");
             }
-            
+            userService.checkToken(token);
             wishlistService.addToWishlist(wishlist);
             return ResponseEntity.ok("ok");
         } catch (Exception e) {
@@ -51,11 +55,12 @@ public class WishlistController {
 
     // ✅ 특정 사용자의 위시리스트 조회 (user_id → user_email)
     @GetMapping("/{userEmail}")
-    public ResponseEntity<List<Wishlist>> getWishlistByUser(@PathVariable String userEmail) {
+    public ResponseEntity<List<Wishlist>> getWishlistByUser(@PathVariable String userEmail, @RequestHeader("Authorization") String token) {
         try {
             if (userEmail == null || userEmail.trim().isEmpty()) {
                 return ResponseEntity.badRequest().body(null);
             }
+            userService.checkToken(token);
             List<Wishlist> wishlist = wishlistService.getWishlistByUser(userEmail);
             return ResponseEntity.ok(wishlist);
         } catch (Exception e) {
@@ -66,11 +71,12 @@ public class WishlistController {
 
     // ✅ 위시리스트 항목 삭제 (user_email 기반)
     @DeleteMapping("/remove/{carId}/{userEmail}")
-    public ResponseEntity<String> removeFromWishlist(@PathVariable int carId, @PathVariable String userEmail) {
+    public ResponseEntity<String> removeFromWishlist(@PathVariable int carId, @PathVariable String userEmail , @RequestHeader("Authorization") String token) {
         try {
             if (userEmail == null || userEmail.trim().isEmpty()) {
                 return ResponseEntity.badRequest().body("⚠️ user_email 값이 없습니다.");
             }
+            userService.checkToken(token);
             wishlistService.removeFromWishlist(carId, userEmail);
             return ResponseEntity.ok("deleted");
         } catch (Exception e) {
